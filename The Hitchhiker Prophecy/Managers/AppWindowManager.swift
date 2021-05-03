@@ -14,6 +14,11 @@ enum AppWindowManager {
         let controller = HomeSceneConfigurator.configure()
         window.rootViewController = controller
         window.makeKeyAndVisible()
+        
+        //If appdelegate window is nil, then assigning newly created window
+        if self.window == nil {
+            self.window = window
+        }
     }
 }
 
