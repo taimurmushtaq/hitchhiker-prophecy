@@ -20,7 +20,7 @@ enum NetworkConstants {
 
 extension NetworkConstants {
     static func getHashValue(ts: String) -> String {
-        let stringValue = ts + NetworkConstants.publicKey + NetworkConstants.privateKey
+        let stringValue = ts + NetworkConstants.privateKey + NetworkConstants.publicKey
         
         let digest = Insecure.MD5.hash(data: stringValue.data(using: .utf8) ?? Data())
         return digest.map { String(format: "%02hhx", $0) }.joined()
