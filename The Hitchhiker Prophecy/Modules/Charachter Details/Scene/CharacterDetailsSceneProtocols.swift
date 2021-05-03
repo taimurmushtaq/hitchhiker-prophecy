@@ -10,22 +10,22 @@
 
 import Foundation
 
-protocol CharacterDetailsSceneDisplayLogic: class {
+protocol CharacterDetailsSceneDisplayLogic: AnyObject {
     var interactor: CharacterDetailsSceneBusinessLogic? { get }
     
     func didFetchCharacter(viewModel: CharacterDetailsScene.FetchCharacter.ViewModel)
 }
 
-protocol CharacterDetailsSceneBusinessLogic: class {
+protocol CharacterDetailsSceneBusinessLogic: AnyObject {
     func fetchCharacter()
 }
 
-protocol CharacterDetailsSceneDataStore: class {
+protocol CharacterDetailsSceneDataStore: AnyObject {
     var presenter: CharacterDetailsScenePresentationLogic { get }
     var character: Characters.Search.Character { get }
 }
 
-protocol CharacterDetailsScenePresentationLogic: class {
+protocol CharacterDetailsScenePresentationLogic: AnyObject {
     var displayView: CharacterDetailsSceneDisplayLogic? { get }
     
     func presentCharacter(_ response: CharacterDetailsScene.FetchCharacter.Response)

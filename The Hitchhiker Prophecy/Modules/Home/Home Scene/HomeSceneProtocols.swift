@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol HomeSceneDisplayView: class {
+protocol HomeSceneDisplayView: AnyObject {
     var interactor: HomeSceneBusinessLogic? { get }
     var router: HomeSceneRoutingLogic? { get }
     
@@ -16,28 +16,28 @@ protocol HomeSceneDisplayView: class {
     func failedToFetchCharacters(error: Error)
 }
 
-protocol HomeSceneBusinessLogic: class {
+protocol HomeSceneBusinessLogic: AnyObject {
     var worker: HomeWorkerType { get }
     var presenter: HomeScenePresentationLogic { get }
     
     func fetchCharacters()
 }
 
-protocol HomeScenePresentationLogic: class {
+protocol HomeScenePresentationLogic: AnyObject {
     var displayView: HomeSceneDisplayView? { get }
     
     func presentCharacters(_ response: HomeScene.Search.Response)
 }
 
-protocol HomeSceneDataStore: class {
+protocol HomeSceneDataStore: AnyObject {
     var result: Characters.Search.Results? { get }
 }
 
-protocol HomeSceneDataPassing: class {
+protocol HomeSceneDataPassing: AnyObject {
     var dataStore: HomeSceneDataStore? { get }
 }
 
-protocol HomeSceneRoutingLogic: class {
+protocol HomeSceneRoutingLogic: AnyObject {
     var viewController: (HomeSceneDisplayView & UIViewController)? { get }
     
     func routeToCharacterDetailsWithCharacter(at index: Int)
