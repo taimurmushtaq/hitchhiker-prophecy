@@ -13,7 +13,7 @@ struct HomeSceneConstants {
     static let lineSpacing = CGFloat(8)
     static let edgeInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     static let verticalSize = CGSize(width: UIScreen.main.bounds.width - 16*2, height: UIScreen.main.bounds.width * 0.5)
-    static let horizontalSize = CGSize(width: UIScreen.main.bounds.width - 20*2, height: UIScreen.main.bounds.width * 1.5)
+    static let horizontalSize = CGSize(width: UIScreen.main.bounds.width - 20*2, height: UIScreen.main.bounds.height * 0.75)
 }
 
 class HomeSceneViewController: UIViewController {
@@ -31,6 +31,7 @@ class HomeSceneViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setNavigationItems()
         setupCharacterCollectionView()
         interactor?.fetchCharacters()
     }
@@ -55,6 +56,9 @@ extension HomeSceneViewController: HomeSceneDisplayView {
 
 // MARK: - Helper Methods
 extension HomeSceneViewController {
+    func setNavigationItems() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "Change Layout", style: .plain, target: self, action: #selector(changeLayoutButtonPressed))
+    }
     func setupCharacterCollectionView() {
         let nib = UINib(nibName: HomeCharacterCollectionViewCell.identifier, bundle: .main)
         
@@ -68,7 +72,7 @@ extension HomeSceneViewController {
 
 // MARK: - IBActions
 extension HomeSceneViewController {
-    @IBAction func changeLayoutButtonPressed() {
+    @objc func changeLayoutButtonPressed() {
         let layout = UICollectionViewFlowLayout()
         
         if currentLayout == .list {

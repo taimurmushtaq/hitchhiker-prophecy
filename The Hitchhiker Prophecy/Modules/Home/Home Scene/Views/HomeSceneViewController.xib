@@ -10,7 +10,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeSceneViewController" customModule="The_Hitchhiker_Prophecy" customModuleProvider="target">
             <connections>
-                <outlet property="changeLayoutButton" destination="Hx3-XZ-lgf" id="OPi-Mr-9zt"/>
                 <outlet property="characterCollectionView" destination="AUP-h6-Bvn" id="UTd-b7-bx2"/>
                 <outlet property="view" destination="WGk-3c-KKJ" id="Olq-EN-8do"/>
             </connections>
@@ -20,7 +19,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="AUP-h6-Bvn">
-                    <rect key="frame" x="0.0" y="92" width="414" height="770"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9UB-i4-fMo">
                         <size key="itemSize" width="128" height="128"/>
@@ -29,26 +28,14 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hx3-XZ-lgf">
-                    <rect key="frame" x="289" y="44" width="109" height="32"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                    <state key="normal" title="Change Layout">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </state>
-                    <connections>
-                        <action selector="changeLayoutButtonPressed" destination="-1" eventType="touchUpInside" id="Nav-g3-lsb"/>
-                    </connections>
-                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="p9K-a1-ut4"/>
             <color key="backgroundColor" systemColor="viewFlipsideBackgroundColor"/>
             <constraints>
-                <constraint firstItem="p9K-a1-ut4" firstAttribute="trailing" secondItem="Hx3-XZ-lgf" secondAttribute="trailing" constant="16" id="0hJ-Az-ju2"/>
+                <constraint firstItem="AUP-h6-Bvn" firstAttribute="top" secondItem="p9K-a1-ut4" secondAttribute="top" id="F8k-QY-Hv5"/>
                 <constraint firstItem="AUP-h6-Bvn" firstAttribute="leading" secondItem="p9K-a1-ut4" secondAttribute="leading" id="a7A-yy-SZo"/>
                 <constraint firstItem="p9K-a1-ut4" firstAttribute="trailing" secondItem="AUP-h6-Bvn" secondAttribute="trailing" id="fhj-U1-ffZ"/>
-                <constraint firstItem="AUP-h6-Bvn" firstAttribute="top" secondItem="Hx3-XZ-lgf" secondAttribute="bottom" constant="16" id="iIp-FD-4j8"/>
                 <constraint firstItem="p9K-a1-ut4" firstAttribute="bottom" secondItem="AUP-h6-Bvn" secondAttribute="bottom" id="jSF-sG-axq"/>
-                <constraint firstItem="Hx3-XZ-lgf" firstAttribute="top" secondItem="p9K-a1-ut4" secondAttribute="top" id="yCY-JY-jSW"/>
             </constraints>
             <point key="canvasLocation" x="186.95652173913044" y="144.64285714285714"/>
         </view>
