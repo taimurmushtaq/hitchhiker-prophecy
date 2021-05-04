@@ -23,7 +23,7 @@ class HomeScenePresneter: HomeScenePresentationLogic {
             var viewModel = [HomeScene.Search.ViewModel]()
             
             results.forEach({ character in
-                let imageUrl = character.thumbnail.path + character.thumbnail.thumbnailExtension
+                let imageUrl = character.thumbnail.path + "." + character.thumbnail.thumbnailExtension
                 
                 let model = HomeScene.Search.ViewModel(name: character.name,
                                                        desc: character.resultDescription,

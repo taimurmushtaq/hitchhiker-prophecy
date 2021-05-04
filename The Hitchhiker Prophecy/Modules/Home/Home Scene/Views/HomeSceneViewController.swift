@@ -8,6 +8,14 @@
 
 import UIKit
 
+struct HomeSceneConstants {
+    static let interItemSpacing = CGFloat(16)
+    static let lineSpacing = CGFloat(8)
+    static let edgeInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+    static let verticalSize = CGSize(width: UIScreen.main.bounds.width - 16*2, height: UIScreen.main.bounds.width * 0.5)
+    static let horizontalSize = CGSize(width: UIScreen.main.bounds.width - 20*2, height: UIScreen.main.bounds.width * 1.5)
+}
+
 class HomeSceneViewController: UIViewController {
     var interactor: HomeSceneBusinessLogic?
     var router: HomeSceneRoutingLogic?
@@ -55,7 +63,6 @@ extension HomeSceneViewController {
         characterCollectionView.backgroundColor = .clear
         characterCollectionView.delegate = self
         characterCollectionView.dataSource = self
-        characterCollectionView.reloadData()
     }
     
     func getCollectionViewFlowLayout() -> UICollectionViewFlowLayout? {
@@ -66,8 +73,9 @@ extension HomeSceneViewController {
 // MARK: - IBActions
 extension HomeSceneViewController {
     @IBAction func changeLayoutButtonPressed() {
-        UIView.animate(withDuration: 0.5) { [self] in
-            if let layout = getCollectionViewFlowLayout() {
+        if let layout = getCollectionViewFlowLayout() {
+            UIView.animate(withDuration: 0.5) { [self] in
+                
                 if currentLayout == .list {
                     currentLayout = .peek
                     layout.scrollDirection = .horizontal
@@ -76,9 +84,10 @@ extension HomeSceneViewController {
                     layout.scrollDirection = .vertical
                 }
             }
-        } completion: { [self] onComplete in
-            characterCollectionView.reloadData()
-            characterCollectionView.collectionViewLayout.invalidateLayout()
+            completion: { [self] onComplete in
+                layout.invalidateLayout()
+                characterCollectionView.reloadData()
+            }
         }
     }
 }
@@ -101,6 +110,22 @@ extension HomeSceneViewController: UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         router?.routeToCharacterDetailsWithCharacter(at: indexPath.row)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return HomeSceneConstants.lineSpacing
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return HomeSceneConstants.interItemSpacing
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return currentLayout == .list ? .zero : HomeSceneConstants.edgeInset
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return currentLayout == .list ? HomeSceneConstants.verticalSize : HomeSceneConstants.horizontalSize
     }
 }
 
