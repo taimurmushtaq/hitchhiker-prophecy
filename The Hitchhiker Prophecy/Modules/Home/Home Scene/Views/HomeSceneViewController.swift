@@ -64,25 +64,24 @@ extension HomeSceneViewController {
         characterCollectionView.delegate = self
         characterCollectionView.dataSource = self
     }
-    
-    func getCollectionViewFlowLayout() -> UICollectionViewFlowLayout? {
-        return characterCollectionView.collectionViewLayout as? UICollectionViewFlowLayout
-    }
 }
 
 // MARK: - IBActions
 extension HomeSceneViewController {
     @IBAction func changeLayoutButtonPressed() {
-        if let layout = getCollectionViewFlowLayout() {
-            if currentLayout == .list {
-                currentLayout = .peek
-                layout.scrollDirection = .horizontal
-            } else {
-                currentLayout = .list
-                layout.scrollDirection = .vertical
-            }
-            
-            layout.invalidateLayout()
+        let layout = UICollectionViewFlowLayout()
+        
+        if currentLayout == .list {
+            currentLayout = .peek
+            layout.scrollDirection = .horizontal
+        } else {
+            currentLayout = .list
+            layout.scrollDirection = .vertical
+        }
+        
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: .beginFromCurrentState) { [self] in
+            characterCollectionView.collectionViewLayout = layout
+        } completion: { [self] onComplete in
             characterCollectionView.reloadData()
         }
     }
