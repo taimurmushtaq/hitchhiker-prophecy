@@ -16,6 +16,29 @@ class HomeScenePresneter: HomeScenePresentationLogic {
     }
     
     func presentCharacters(_ response: HomeScene.Search.Response) {
-        // TODO: Implement
+        switch response {
+        case .success(let output):
+            let results = output.data.results
+            
+            var viewModel = [HomeScene.Search.ViewModel]()
+            
+            results.forEach({ character in
+                let imageUrl = character.thumbnail.path + character.thumbnail.thumbnailExtension
+                
+                let model = HomeScene.Search.ViewModel(name: character.name,
+                                                       desc: character.resultDescription,
+                                                       imageUrl: imageUrl,
+                                                       comics: "",
+                                                       series: "",
+                                                       stories: "",
+                                                       events: "")
+                viewModel.append(model)
+            })
+            
+            displayView?.didFetchCharacters(viewModel: viewModel)
+            
+        case .failure(let error):
+            displayView?.failedToFetchCharacters(error: error)
+        }
     }
 }

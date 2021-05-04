@@ -9,6 +9,9 @@
 import UIKit
 
 class HomeCharacterCollectionViewCell: UICollectionViewCell {
+    // MARK: - Identifier
+    static let identifier = "HomeCharacterCollectionViewCell"
+    
     // MARK: - Outlets
     @IBOutlet private weak var characterNameLabel: UILabel!
     @IBOutlet private weak var characterImageView: UIImageView!
