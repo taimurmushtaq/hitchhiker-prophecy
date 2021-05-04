@@ -74,20 +74,16 @@ extension HomeSceneViewController {
 extension HomeSceneViewController {
     @IBAction func changeLayoutButtonPressed() {
         if let layout = getCollectionViewFlowLayout() {
-            UIView.animate(withDuration: 0.5) { [self] in
-                
-                if currentLayout == .list {
-                    currentLayout = .peek
-                    layout.scrollDirection = .horizontal
-                } else {
-                    currentLayout = .list
-                    layout.scrollDirection = .vertical
-                }
+            if currentLayout == .list {
+                currentLayout = .peek
+                layout.scrollDirection = .horizontal
+            } else {
+                currentLayout = .list
+                layout.scrollDirection = .vertical
             }
-            completion: { [self] onComplete in
-                layout.invalidateLayout()
-                characterCollectionView.reloadData()
-            }
+            
+            layout.invalidateLayout()
+            characterCollectionView.reloadData()
         }
     }
 }
