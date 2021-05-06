@@ -67,6 +67,8 @@
 		56D304F226445DD500D23712 /* HomeWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019ACF92249276FC003E3ECF /* HomeWorker.swift */; };
 		56D304F326445E0100D23712 /* CharactersNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019ACF8F24926F7F003E3ECF /* CharactersNetworkService.swift */; };
 		56D304F426445E0C00D23712 /* CharacterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019ACF8024925E15003E3ECF /* CharacterRouter.swift */; };
+		56D304F6264475D900D23712 /* HomeScenePresenterUnitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D304F5264475D900D23712 /* HomeScenePresenterUnitTest.swift */; };
+		56D304F826447FD100D23712 /* response.json in Resources */ = {isa = PBXBuildFile; fileRef = 56D304F726447FD100D23712 /* response.json */; };
 		76A9C3C224A40FB4001E707F /* HomeSceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76A9C3C124A40FB4001E707F /* HomeSceneViewController.xib */; };
 		76C7AE382497AD910053EF25 /* CharacterDetailsSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C7AE362497AD910053EF25 /* CharacterDetailsSceneViewController.swift */; };
 		76C7AE392497AD920053EF25 /* CharacterDetailsSceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76C7AE372497AD910053EF25 /* CharacterDetailsSceneViewController.xib */; };
@@ -126,6 +128,8 @@
 		35E479F762E172A826F066C5 /* Pods-The Hitchhiker ProphecyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The Hitchhiker ProphecyTests.debug.xcconfig"; path = "Target Support Files/Pods-The Hitchhiker ProphecyTests/Pods-The Hitchhiker ProphecyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		56D304CC2644571600D23712 /* NetworkConstantsUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstantsUnitTest.swift; sourceTree = "<group>"; };
 		56D304CE26445B4B00D23712 /* HomeSceneViewControllerUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSceneViewControllerUnitTest.swift; sourceTree = "<group>"; };
+		56D304F5264475D900D23712 /* HomeScenePresenterUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScenePresenterUnitTest.swift; sourceTree = "<group>"; };
+		56D304F726447FD100D23712 /* response.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = response.json; sourceTree = "<group>"; };
 		700C25058EFE60C15BBB4B75 /* Pods-The Hitchhiker ProphecyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The Hitchhiker ProphecyTests.release.xcconfig"; path = "Target Support Files/Pods-The Hitchhiker ProphecyTests/Pods-The Hitchhiker ProphecyTests.release.xcconfig"; sourceTree = "<group>"; };
 		76A9C3C124A40FB4001E707F /* HomeSceneViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeSceneViewController.xib; sourceTree = "<group>"; };
 		76C7AE362497AD910053EF25 /* CharacterDetailsSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsSceneViewController.swift; sourceTree = "<group>"; };
@@ -272,6 +276,8 @@
 				01D65F7B24913A160082F8FF /* Info.plist */,
 				56D304CC2644571600D23712 /* NetworkConstantsUnitTest.swift */,
 				56D304CE26445B4B00D23712 /* HomeSceneViewControllerUnitTest.swift */,
+				56D304F5264475D900D23712 /* HomeScenePresenterUnitTest.swift */,
+				56D304F726447FD100D23712 /* response.json */,
 			);
 			path = "The Hitchhiker ProphecyTests";
 			sourceTree = "<group>";
@@ -507,6 +513,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56D304F826447FD100D23712 /* response.json in Resources */,
 				56D304E926445DA200D23712 /* CharacterDetailsSceneViewController.xib in Resources */,
 				56D304D626445B5A00D23712 /* HomeSceneViewController.xib in Resources */,
 				56D304D226445B5A00D23712 /* HomeCharacterCollectionViewCell.xib in Resources */,
@@ -667,6 +674,7 @@
 				56D304EF26445DA200D23712 /* CharacterDetailsScenePresenter.swift in Sources */,
 				56D304DD26445D5500D23712 /* Characters.swift in Sources */,
 				56D304E126445D7B00D23712 /* ThemeManager.swift in Sources */,
+				56D304F6264475D900D23712 /* HomeScenePresenterUnitTest.swift in Sources */,
 				56D304D826445B5A00D23712 /* HomeScenePresenter.swift in Sources */,
 				56D304D926445B5A00D23712 /* HomeSceneConfigurator.swift in Sources */,
 				56D304EA26445DA200D23712 /* CharacterDetailsSceneProtocols.swift in Sources */,
