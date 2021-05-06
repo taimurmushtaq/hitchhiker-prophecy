@@ -8,6 +8,7 @@
 
 import Foundation
 import CryptoKit
+import CommonCrypto
 
 enum NetworkConstants {
     static let baseUrl = "https://gateway.marvel.com"
@@ -22,7 +23,28 @@ extension NetworkConstants {
     static func getHashValue(ts: String) -> String {
         let stringValue = ts + NetworkConstants.privateKey + NetworkConstants.publicKey
         
-        let digest = Insecure.MD5.hash(data: stringValue.data(using: .utf8) ?? Data())
-        return digest.map { String(format: "%02hhx", $0) }.joined()
+        if #available(iOS 13.0, *) {
+            let digest = Insecure.MD5.hash(data: stringValue.data(using: .utf8) ?? Data())
+            return digest.map { String(format: "%02hhx", $0) }.joined()
+        } else {
+            if let strData = stringValue.data(using: String.Encoding.utf8) {
+                var digest = [UInt8](repeating: 0, count:Int(CC_MD5_DIGEST_LENGTH))
+                _ = strData.withUnsafeBytes { CC_MD5($0.baseAddress, UInt32(strData.count), &digest) }
+                var md5String = ""
+                for byte in digest {
+                    md5String += String(format:"%02x", UInt8(byte))
+                }
+                
+                if md5String.uppercased() == "8D84E6C45CE9044CAE90C064997ACFF1" {
+                    print("Matching MD5 hash: 8D84E6C45CE9044CAE90C064997ACFF1")
+                } else {
+                    print("MD5 hash does not match: \(md5String)")
+                }
+                return md5String
+            }
+            
+            return ""
+        }
+        
     }
 }
