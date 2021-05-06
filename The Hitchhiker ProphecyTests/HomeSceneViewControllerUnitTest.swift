@@ -10,31 +10,41 @@ import XCTest
 
 class HomeSceneViewControllerUnitTest: XCTestCase {
     var navController:UINavigationController!
-    var homeController:HomeSceneViewController!
+    var sut:HomeSceneViewController!
     
     override func setUpWithError() throws {
         navController = HomeSceneConfigurator.configure()
-        homeController = navController.viewControllers.first as? HomeSceneViewController
+        sut = navController.viewControllers.first as? HomeSceneViewController
         
-        homeController?.beginAppearanceTransition(true, animated: true)
-        homeController?.loadViewIfNeeded()
+        sut.beginAppearanceTransition(true, animated: false)
+        sut.endAppearanceTransition()
     }
 
     override func tearDownWithError() throws {
-        navController.popToRootViewController(animated: true)
-        
-        homeController.endAppearanceTransition()
-        homeController = nil
+        sut = nil
         navController = nil
     }
 }
 
 extension HomeSceneViewControllerUnitTest {
-    func testDidFetchCharactersArray() {
-        homeController.didFetchCharacters(viewModel: getViewModel())
-        XCTAssertEqual(homeController.charactersArray.count, 3)
+    func testConfiguratorMethod() {
+        XCTAssertNotNil(sut.interactor)
+        XCTAssertNotNil(sut.router)
         
-        let model = homeController.charactersArray.first
+        XCTAssertNotNil(sut.interactor!.worker)
+        XCTAssertNotNil(sut.interactor!.presenter)
+        XCTAssertNotNil(sut.interactor!.presenter.displayView)
+        
+        XCTAssertNotNil(sut.router!.viewController)
+    }
+}
+
+extension HomeSceneViewControllerUnitTest {
+    func testDidFetchCharactersArray() {
+        sut.didFetchCharacters(viewModel: getViewModel())
+        XCTAssertEqual(sut.charactersArray.count, 3)
+        
+        let model = sut.charactersArray.first
         XCTAssertEqual(model?.name, "Avengers")
         XCTAssertEqual(model?.desc, "Avengers: Age of Ultron")
         XCTAssertEqual(model?.imageUrl, "Url")
@@ -42,34 +52,21 @@ extension HomeSceneViewControllerUnitTest {
 }
 
 extension HomeSceneViewControllerUnitTest {
-    func testConfiguratorMethod() {
-        XCTAssertNotNil(homeController.interactor)
-        XCTAssertNotNil(homeController.router)
-        
-        XCTAssertNotNil(homeController.interactor!.worker)
-        XCTAssertNotNil(homeController.interactor!.presenter)
-        XCTAssertNotNil(homeController.interactor!.presenter.displayView)
-        
-        XCTAssertNotNil(homeController.router!.viewController)
-    }
-}
-
-extension HomeSceneViewControllerUnitTest {
     func testNavigation() {
-        homeController.setNavigationItems()
+        sut.setNavigationItems()
         
-        XCTAssertNotNil(homeController.navigationItem.rightBarButtonItem)
-        XCTAssertEqual(homeController.navigationItem.rightBarButtonItem?.title, "Change Layout")
+        XCTAssertNotNil(sut.navigationItem.rightBarButtonItem)
+        XCTAssertEqual(sut.navigationItem.rightBarButtonItem?.title, "Change Layout")
     }
     
     func testSetupCharacterCollectionView() {
-        homeController.setupCharacterCollectionView()
+        sut.setupCharacterCollectionView()
         
-        let cell = homeController.characterCollectionView.dequeueReusableCell(withReuseIdentifier: HomeCharacterCollectionViewCell.identifier, for: IndexPath(item: 0, section: 0))
+        let cell = sut.characterCollectionView.dequeueReusableCell(withReuseIdentifier: HomeCharacterCollectionViewCell.identifier, for: IndexPath(item: 0, section: 0))
         XCTAssertNotNil(cell)
-        XCTAssertNotNil(homeController.characterCollectionView.delegate)
-        XCTAssertNotNil(homeController.characterCollectionView.dataSource)
-        XCTAssertEqual(homeController.characterCollectionView.backgroundColor, .clear)
+        XCTAssertNotNil(sut.characterCollectionView.delegate)
+        XCTAssertNotNil(sut.characterCollectionView.dataSource)
+        XCTAssertEqual(sut.characterCollectionView.backgroundColor, .clear)
     }
 }
 
@@ -77,8 +74,8 @@ extension HomeSceneViewControllerUnitTest {
     func testHorizontalLayout() {
         let expectation = self.expectation(description: "Horizontal Layout")
         
-        homeController.currentLayout = .list
-        homeController.changeLayoutButtonPressed()
+        sut.currentLayout = .list
+        sut.changeLayoutButtonPressed()
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
             expectation.fulfill()
@@ -86,17 +83,17 @@ extension HomeSceneViewControllerUnitTest {
         
         waitForExpectations(timeout: 1.5, handler: nil)
      
-        XCTAssertEqual(homeController.currentLayout, .peek)
+        XCTAssertEqual(sut.currentLayout, .peek)
         
-        let layout = homeController.characterCollectionView.collectionViewLayout as? UICollectionViewFlowLayout
+        let layout = sut.characterCollectionView.collectionViewLayout as? UICollectionViewFlowLayout
         XCTAssertEqual(layout?.scrollDirection, .horizontal)
     }
     
     func testVerticalLayout() {
         let expectation = self.expectation(description: "Vertical Layout")
         
-        homeController.currentLayout = .peek
-        homeController.changeLayoutButtonPressed()
+        sut.currentLayout = .peek
+        sut.changeLayoutButtonPressed()
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
             expectation.fulfill()
@@ -104,9 +101,9 @@ extension HomeSceneViewControllerUnitTest {
         
         waitForExpectations(timeout: 5, handler: nil)
      
-        XCTAssertEqual(homeController.currentLayout, .list)
+        XCTAssertEqual(sut.currentLayout, .list)
         
-        let layout = homeController.characterCollectionView.collectionViewLayout as? UICollectionViewFlowLayout
+        let layout = sut.characterCollectionView.collectionViewLayout as? UICollectionViewFlowLayout
         XCTAssertEqual(layout?.scrollDirection, .vertical)
     }
 }
@@ -124,59 +121,59 @@ extension HomeSceneViewControllerUnitTest {
     }
     
     func testNumberOfSections() {
-        XCTAssertEqual(homeController.numberOfSections(in: homeController.characterCollectionView), 1)
+        XCTAssertEqual(sut.numberOfSections(in: sut.characterCollectionView), 1)
     }
     
     func testNumberOfItems() {
-        homeController.charactersArray.removeAll()
-        XCTAssertEqual(homeController.collectionView(homeController.characterCollectionView, numberOfItemsInSection: 0), 0)
+        sut.charactersArray.removeAll()
+        XCTAssertEqual(sut.collectionView(sut.characterCollectionView, numberOfItemsInSection: 0), 0)
         
-        homeController.charactersArray.append(contentsOf: getViewModel())
-        XCTAssertEqual(homeController.collectionView(homeController.characterCollectionView, numberOfItemsInSection: 0), 3)
+        sut.charactersArray.append(contentsOf: getViewModel())
+        XCTAssertEqual(sut.collectionView(sut.characterCollectionView, numberOfItemsInSection: 0), 3)
     }
     
     func testLineSpacing() {
-        let spacing = homeController.collectionView(homeController.characterCollectionView,
-                                                    layout: homeController.characterCollectionView.collectionViewLayout,
+        let spacing = sut.collectionView(sut.characterCollectionView,
+                                                    layout: sut.characterCollectionView.collectionViewLayout,
                                                     minimumLineSpacingForSectionAt: 0)
         XCTAssertEqual(spacing, HomeSceneConstants.lineSpacing)
     }
     
     func testInterItemSpacing() {
-        let spacing = homeController.collectionView(homeController.characterCollectionView,
-                                                    layout: homeController.characterCollectionView.collectionViewLayout,
+        let spacing = sut.collectionView(sut.characterCollectionView,
+                                                    layout: sut.characterCollectionView.collectionViewLayout,
                                                     minimumInteritemSpacingForSectionAt: 0)
         XCTAssertEqual(spacing, HomeSceneConstants.interItemSpacing)
     }
     
     func testVerticalEdgeInset() {
-        homeController.currentLayout = .list
-        let edgeInset = homeController.collectionView(homeController.characterCollectionView,
-                                                    layout: homeController.characterCollectionView.collectionViewLayout,
+        sut.currentLayout = .list
+        let edgeInset = sut.collectionView(sut.characterCollectionView,
+                                                    layout: sut.characterCollectionView.collectionViewLayout,
                                                     insetForSectionAt: 0)
         XCTAssertEqual(edgeInset, .zero)
     }
     
     func testHorizontalEdgeInset() {
-        homeController.currentLayout = .peek
-        let edgeInset = homeController.collectionView(homeController.characterCollectionView,
-                                                    layout: homeController.characterCollectionView.collectionViewLayout,
+        sut.currentLayout = .peek
+        let edgeInset = sut.collectionView(sut.characterCollectionView,
+                                                    layout: sut.characterCollectionView.collectionViewLayout,
                                                     insetForSectionAt: 0)
         XCTAssertEqual(edgeInset, HomeSceneConstants.edgeInset)
     }
     
     func testVerticalItemSize() {
-        homeController.currentLayout = .list
-        let size = homeController.collectionView(homeController.characterCollectionView,
-                                                 layout: homeController.characterCollectionView.collectionViewLayout,
+        sut.currentLayout = .list
+        let size = sut.collectionView(sut.characterCollectionView,
+                                                 layout: sut.characterCollectionView.collectionViewLayout,
                                                  sizeForItemAt: IndexPath(row: 0, section: 0))
         XCTAssertEqual(size, HomeSceneConstants.verticalSize)
     }
     
     func testHorizontalItemSize() {
-        homeController.currentLayout = .peek
-        let size = homeController.collectionView(homeController.characterCollectionView,
-                                                 layout: homeController.characterCollectionView.collectionViewLayout,
+        sut.currentLayout = .peek
+        let size = sut.collectionView(sut.characterCollectionView,
+                                                 layout: sut.characterCollectionView.collectionViewLayout,
                                                  sizeForItemAt: IndexPath(row: 0, section: 0))
         XCTAssertEqual(size, HomeSceneConstants.horizontalSize)
     }
