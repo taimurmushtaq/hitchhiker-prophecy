@@ -118,6 +118,10 @@ extension Characters.Search.Character {
             case path
             case thumbnailExtension = "extension"
         }
+        
+        var url: String {
+            return path + "." + thumbnailExtension
+        }
     }
 }
 
