@@ -8,3 +8,11 @@ target 'The Hitchhiker Prophecy' do
   pod 'Alamofire', '4.7.3'
   pod 'AlamofireImage', '3.4.1'
 end
+
+target 'The Hitchhiker ProphecyTests' do
+  use_frameworks!
+
+  # Pods for The Hitchhiker Prophecy
+  pod 'Alamofire', '4.7.3'
+  pod 'AlamofireImage', '3.4.1'
+end

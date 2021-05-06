@@ -24,8 +24,7 @@ class HomeSceneViewController: UIViewController {
     var currentLayout = HomeScene.LayoutType.list
     
     // MARK: - Outlets
-    @IBOutlet private weak var characterCollectionView: UICollectionView!
-    @IBOutlet private weak var changeLayoutButton: UIButton!
+    @IBOutlet weak var characterCollectionView: UICollectionView!
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -60,7 +59,8 @@ extension HomeSceneViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "Change Layout", style: .plain, target: self, action: #selector(changeLayoutButtonPressed))
     }
     func setupCharacterCollectionView() {
-        let nib = UINib(nibName: HomeCharacterCollectionViewCell.identifier, bundle: .main)
+        let bundle = Bundle(for: type(of: self))
+        let nib = UINib(nibName: HomeCharacterCollectionViewCell.identifier, bundle: bundle)
         
         characterCollectionView.register(nib, forCellWithReuseIdentifier: HomeCharacterCollectionViewCell.identifier)
         
