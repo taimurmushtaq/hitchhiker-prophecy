@@ -18,7 +18,10 @@ final class HomeSceneRouter: HomeSceneDataPassing {
 extension HomeSceneRouter: HomeSceneRoutingLogic {
     func routeToCharacterDetailsWithCharacter(at index: Int) {
         guard let character = dataStore?.result?.results[index] else { return }
+        
         let characterDetailsViewController = CharacterDetailsSceneConfigurator.configure(with: character)
-        viewController?.present(characterDetailsViewController, animated: true)
+        
+        viewController?.navigationController?.push(characterDetailsViewController, transitionType: .flip)
+        //viewController?.present(characterDetailsViewController, animated: true)
     }
 }

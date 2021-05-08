@@ -30,6 +30,8 @@
 		01D65F8424913BD40082F8FF /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D65F8324913BD40082F8FF /* Request.swift */; };
 		4539F3EFE63D260FB7995416 /* Pods_The_Hitchhiker_ProphecyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC71F82C84A16A7961CBCA3 /* Pods_The_Hitchhiker_ProphecyTests.framework */; };
 		565F15302641AC3500463272 /* HomeCharacterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76C7AE4E249803460053EF25 /* HomeCharacterCollectionViewCell.xib */; };
+		566F3C7226472374001CE84B /* UINavigationControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566F3C7126472374001CE84B /* UINavigationControllerExt.swift */; };
+		566F3C7326472374001CE84B /* UINavigationControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566F3C7126472374001CE84B /* UINavigationControllerExt.swift */; };
 		56D304CB26444F3D00D23712 /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019ACF7B24925D14003E3ECF /* NetworkConstants.swift */; };
 		56D304CD2644571600D23712 /* NetworkConstantsUnitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D304CC2644571600D23712 /* NetworkConstantsUnitTest.swift */; };
 		56D304D026445B5A00D23712 /* HomeSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C7AE3E2497AFBE0053EF25 /* HomeSceneRouter.swift */; };
@@ -126,6 +128,7 @@
 		15699D3B559570DF31F0A14D /* Pods-The Hitchhiker Prophecy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The Hitchhiker Prophecy.debug.xcconfig"; path = "Target Support Files/Pods-The Hitchhiker Prophecy/Pods-The Hitchhiker Prophecy.debug.xcconfig"; sourceTree = "<group>"; };
 		26DE673059370D3D001872E6 /* Pods_The_Hitchhiker_Prophecy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_The_Hitchhiker_Prophecy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		35E479F762E172A826F066C5 /* Pods-The Hitchhiker ProphecyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The Hitchhiker ProphecyTests.debug.xcconfig"; path = "Target Support Files/Pods-The Hitchhiker ProphecyTests/Pods-The Hitchhiker ProphecyTests.debug.xcconfig"; sourceTree = "<group>"; };
+		566F3C7126472374001CE84B /* UINavigationControllerExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINavigationControllerExt.swift; sourceTree = "<group>"; };
 		56D304CC2644571600D23712 /* NetworkConstantsUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstantsUnitTest.swift; sourceTree = "<group>"; };
 		56D304CE26445B4B00D23712 /* HomeSceneViewControllerUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSceneViewControllerUnitTest.swift; sourceTree = "<group>"; };
 		56D304F5264475D900D23712 /* HomeScenePresenterUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScenePresenterUnitTest.swift; sourceTree = "<group>"; };
@@ -260,6 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				01D65F6D249138AD0082F8FF /* Info.plist */,
+				566F3C7026472368001CE84B /* Extensions */,
 				A9F01E9324E1ED270034ABB9 /* Managers */,
 				76A9C3BF24A40CC4001E707F /* Main */,
 				76A9C3BE24A40CB2001E707F /* Resources */,
@@ -289,6 +293,14 @@
 				0CC71F82C84A16A7961CBCA3 /* Pods_The_Hitchhiker_ProphecyTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		566F3C7026472368001CE84B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				566F3C7126472374001CE84B /* UINavigationControllerExt.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		76A9C3BC24A40C93001E707F /* Modules */ = {
@@ -637,6 +649,7 @@
 				019ACF8324925EB5003E3ECF /* URL_Generator.swift in Sources */,
 				76C7AE3B2497AF3F0053EF25 /* CharacterDetailsSceneConfigurator.swift in Sources */,
 				76C7AE462497B7BF0053EF25 /* CharacterDetailsSceneModels.swift in Sources */,
+				566F3C7226472374001CE84B /* UINavigationControllerExt.swift in Sources */,
 				01AD290224956FC8006AF9D0 /* HomeSceneProtocols.swift in Sources */,
 				01D65F8224913B760082F8FF /* SessionManager.swift in Sources */,
 			);
@@ -671,6 +684,7 @@
 				56D304DE26445D6500D23712 /* CharactersSearch.swift in Sources */,
 				56D304D126445B5A00D23712 /* HomeSceneProtocols.swift in Sources */,
 				56D304E326445D8200D23712 /* URL_Generator.swift in Sources */,
+				566F3C7326472374001CE84B /* UINavigationControllerExt.swift in Sources */,
 				56D304EF26445DA200D23712 /* CharacterDetailsScenePresenter.swift in Sources */,
 				56D304DD26445D5500D23712 /* Characters.swift in Sources */,
 				56D304E126445D7B00D23712 /* ThemeManager.swift in Sources */,

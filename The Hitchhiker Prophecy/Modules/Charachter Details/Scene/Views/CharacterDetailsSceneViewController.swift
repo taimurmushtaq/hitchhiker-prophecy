@@ -20,6 +20,8 @@ class CharacterDetailsSceneViewController: UIViewController {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setNavigationItems()
         interactor?.fetchCharacter()
     }
 }
@@ -40,6 +42,11 @@ extension CharacterDetailsSceneViewController: CharacterDetailsSceneDisplayLogic
 
 // MARK: - Helpers
 extension CharacterDetailsSceneViewController {
+    private func setNavigationItems() {
+        navigationItem.hidesBackButton = true
+        navigationItem.leftBarButtonItem = UIBarButtonItem.init(title: "Back", style: .plain, target: self, action: #selector(handleBack))
+    }
+    
     private func setupImageViewGradient() {
         let maskLayer = CAGradientLayer(layer: characterImageView.layer)
         maskLayer.colors = [UIColor.black.cgColor, UIColor.clear.cgColor]
@@ -47,5 +54,12 @@ extension CharacterDetailsSceneViewController {
         maskLayer.endPoint = CGPoint(x: 0, y: 0.85)
         maskLayer.frame = characterImageView.bounds
         characterImageView.layer.mask = maskLayer
+    }
+}
+
+// MARK: - IBActions
+extension CharacterDetailsSceneViewController {
+    @objc func handleBack() {
+        self.navigationController?.pop(transitionType: .flip)
     }
 }
